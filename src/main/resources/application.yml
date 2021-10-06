@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mariadb://database-1.cmhfqce0eopv.ap-northeast-2.rds.amazonaws.com:3306/test
+    url: -
     driver-class-name: org.mariadb.jdbc.Driver
-    username: admin
-    password: guseo101
+    username: -
+    password: -
 
   thymeleaf:
     prefix: classpath:/templates/
