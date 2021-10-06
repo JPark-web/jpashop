@@ -5,6 +5,7 @@ import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.OrderSearch;
 import jpabook.jpashop.service.ItemService;
+import jpabook.jpashop.service.LoginService;
 import jpabook.jpashop.service.MemberService;
 import jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -23,15 +24,17 @@ public class OrderController {
     private final OrderService orderService;
     private final MemberService memberService;
     private final ItemService itemService;
+    private final LoginService loginService;
 
     @GetMapping(value = "/order")
     public String createForm(Model model) {
         List<Member> members = memberService.findMember();
         List<Item> items = itemService.findItems();
 
+
+
         model.addAttribute("members", members);
         model.addAttribute("items", items);
-
         return "order/orderForm";
     }
 
@@ -49,7 +52,7 @@ public class OrderController {
                         @RequestParam("count") int count) {
 
         orderService.order(memberId, itemId, count);
-        return "redirect:/orders";
+        return "redirect:/orde:wq!rs";
     }
 
     @GetMapping(value = "/orders")

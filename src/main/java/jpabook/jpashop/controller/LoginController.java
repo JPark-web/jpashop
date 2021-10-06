@@ -1,10 +1,9 @@
 package jpabook.jpashop.controller;
 
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.login.LoginService;
+import jpabook.jpashop.service.LoginService;
 import jpabook.jpashop.web.LoginForm;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 

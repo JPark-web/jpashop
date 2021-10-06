@@ -1,4 +1,4 @@
-package jpabook.jpashop.domain.login;
+package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
@@ -19,11 +19,11 @@ public class LoginService {
      */
 
     public Member login(String email, String password) {
-        log.info("id={}",email);
-        log.info("password={}", password);
 
         return memberRepository.findByEmail(email)
                 .filter(m -> m.getPass().equals(password))
                 .orElse(null);
+
     }
+
 }

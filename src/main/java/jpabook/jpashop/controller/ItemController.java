@@ -45,7 +45,6 @@ public class ItemController {
         book.setOpen(form.getOpen());
         book.setSpec(form.getSpec());
 
-
         //-------- image upload test part --------//
         UploadFile attachFile = fileStore.storeFile(form.getAttachFile());
         List<UploadFile> storeImageFiles =
