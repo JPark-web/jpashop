@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+
+    <header>
+        <div class="banner-outer">
+            <div class="banner">
+                <span class="close-banner"><i class="xi-close-thin"></i></span>
+            </div>
+        </div>
+<!--        <div class="lnb-outer">-->
+<!--            <div class="lnb">-->
+<!--                <div class="logo">-->
+<!--                    <a href="#none">-->
+
+<!--                        <img th:src="@{images/logo.png}" th:width="50px" th:href="70px"></a>-->
+<!--                </div>-->
+<!--                <div class="lnb-navi">-->
+<!--                    <a th:href="@{/login}">로그인</a>-->
+<!--                    <a href="/members/new">회원가입</a>-->
+<!--                    <a href="/seller/sellerMain">판매자 로그인</a>-->
+<!--                    </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div class="gnb-outer">
+            <nav>
+                <ul class="gnb">
+                    <li>
+                        <a href="#none">오늘의 핫딜</a>
+                    </li>
+                    <li>
+                        <a href="#none">여성</a>
+                        <div class="dropdown">
+                            <a href="#none">abcd</a>
+                            <a href="#none">efgh</a>
+                            <a href="#none">zsdf1</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#none">남성</a>
+
+                    </li>
+                    <li>
+                        <a href="#none">키즈</a>
+                        <div class="dropdown">
+                            <a href="#none">12345451</a>
+                            <a href="#none">125125121</a>
+                            <a href="#none">125325423523</a>
+                            <a href="#none">adsfdfds</a>
+                            <a href="#none">asdfczvzcxv</a>
+                            <a href="#none">zxcvxcvxcv</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#none">Event<em class="badge"> 13</em> </a>
+                        <div class="dropdown">
+                            <a href="#none">12345</a>
+                            <a href="#none">6789</a>
+                            <a href="#none">101112</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#none">이벤트</a>
+                        <div class="dropdown">
+                            <a href="#none">abcded</a>
+                            <a href="#none">abadfsdf</a>
+                            <a href="#none">asdfsdfsdf</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="trigger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="sitemap-outer">
+                    <div class="sitemap">
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">123213</a>
+                            <a href="#none">123123</a>
+                            <a href="#none">123123</a>
+                        </div>
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">123</a>
+                            <a href="#none">123</a>
+                            <a href="#none">123</a>
+                        </div>
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">456</a>
+                            <a href="#none">789</a>
+                            <a href="#none">1234</a>
+                        </div>
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">456</a>
+                            <a href="#none">789</a>
+                            <a href="#none">1234</a>
+                        </div>
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">234234</a>
+                            <a href="#none">32141234</a>
+                            <a href="#none">23412</a>
+                        </div>
+                        <div>
+                            <b>Guide Lesson</b>
+                            <a href="#none">1234</a>
+                            <a href="#none">1234</a>
+                            <a href="#none">2143</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="body-top">
+        <div class="main-img">
+            <img th:src="@{images/section-bg.jpg}" th:width="1000px">
+        </div>
+    </div>
+
+    <section>
+        <h1>Body 이벤트 설명 영역 제목</h1>
+        <p>
+            Body 이벤트 설명 영역 본문 첫째줄 </br>
+            Body 이벤트 설명 영역 본문 둘째줄 </br>
+            Body 이벤트 설명 영역 본문 셋째줄 </br>
+        </p>
+    </section>
+    <div class="items-inner">
+        <div class="items">
+            <div class="item" th:each="item : ${items}" th:if="${item.open != false}">
+                <div class="photo">
+                    <a th:href="|items/${item.id}|">
+                    <img th:src="|images/${item.getImg1()}|">
+                    <img th:src="|images/${item.getImg2()}|">
+                    </a>
+                </div>
+                <div class="detail">
+                    <span class="price" th:text="${item.price}"></span>
+                    <span class="name" th:text="${item.name}"></span>
+                    <span class="like"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $('.close-banner').click(function () {
+        $('.banner-outer').slideUp()
+    })
+    $('.trigger').click(function () {
+        $(this).toggleClass('active')
+        $('.gnb li:last-child').toggleClass('active')
+        // $('.sitemap-outer').toggle()
+        $('.sitemap-outer').fadeToggle()
+        // $('.sitemap-outer').slideToggle()
+    })
+</script>
+<script>
+    $('.like').click(function () {
+        $(this).toggleClass('active')
+    })
+</script>
+
+<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

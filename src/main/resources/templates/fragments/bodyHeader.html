@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{css/style.css}">
+
+<div class="header" th:fragment="bodyHeader">
+  <ul class="nav nav-pills pull-right">
+    <li><a href="/">Home</a></li>
+  </ul>
+  <a href="/"><h3 class="text-muted">공유 Body Header 영역 + main Link</h3></a>
+
+  <div class="banner-outer">
+    <div class="banner">
+      <span class="close-banner"><i class="xi-close-thin"></i></span>
+    </div>
+  </div>
+  <div class="lnb-outer">
+    <div class="lnb">
+      <div class="logo">
+        <a href="#none">
+
+          <img th:src="@{images/logo.png}" th:width="50px" th:href="70px"></a>
+      </div>
+      <div class="lnb-navi">
+        <a th:href="@{/login}">로그인</a>
+        <a href="/members/new">회원가입</a>
+        <a href="/seller/sellerMain">판매자 로그인</a>
+      </div>
+    </div>
+  </div>
+<!--  <div class="gnb-outer">-->
+<!--    <nav>-->
+<!--      <ul class="gnb">-->
+<!--        <li>-->
+<!--          <a href="#none">오늘의 핫딜</a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#none">여성</a>-->
+<!--          <div class="dropdown">-->
+<!--            <a href="#none">abcd</a>-->
+<!--            <a href="#none">efgh</a>-->
+<!--            <a href="#none">zsdf1</a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#none">남성</a>-->
+
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#none">키즈</a>-->
+<!--          <div class="dropdown">-->
+<!--            <a href="#none">12345451</a>-->
+<!--            <a href="#none">125125121</a>-->
+<!--            <a href="#none">125325423523</a>-->
+<!--            <a href="#none">adsfdfds</a>-->
+<!--            <a href="#none">asdfczvzcxv</a>-->
+<!--            <a href="#none">zxcvxcvxcv</a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#none">Event<em class="badge"> 13</em> </a>-->
+<!--          <div class="dropdown">-->
+<!--            <a href="#none">12345</a>-->
+<!--            <a href="#none">6789</a>-->
+<!--            <a href="#none">101112</a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#none">이벤트</a>-->
+<!--          <div class="dropdown">-->
+<!--            <a href="#none">abcded</a>-->
+<!--            <a href="#none">abadfsdf</a>-->
+<!--            <a href="#none">asdfsdfsdf</a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <div class="trigger">-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--            <span></span>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--      <div class="sitemap-outer">-->
+<!--        <div class="sitemap">-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">123213</a>-->
+<!--            <a href="#none">123123</a>-->
+<!--            <a href="#none">123123</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">123</a>-->
+<!--            <a href="#none">123</a>-->
+<!--            <a href="#none">123</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">456</a>-->
+<!--            <a href="#none">789</a>-->
+<!--            <a href="#none">1234</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">456</a>-->
+<!--            <a href="#none">789</a>-->
+<!--            <a href="#none">1234</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">234234</a>-->
+<!--            <a href="#none">32141234</a>-->
+<!--            <a href="#none">23412</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <b>Guide Lesson</b>-->
+<!--            <a href="#none">1234</a>-->
+<!--            <a href="#none">1234</a>-->
+<!--            <a href="#none">2143</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
+<!--  </div>-->
+</div>
