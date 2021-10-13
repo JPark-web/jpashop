@@ -5,6 +5,9 @@ import jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,11 +22,26 @@ public class LoginService {
      */
 
     public Member login(String email, String password) {
-
-        return memberRepository.findByEmail(email)
+        Member member = memberRepository.findByEmail(email)
                 .filter(m -> m.getPass().equals(password))
                 .orElse(null);
 
+        return member;
+    }
+    public String loginGetName(String email, Member loginMember ) {
+        if (loginMember != null) {
+            List<Member> nameByEmail = memberRepository.findNameByEmail(email);
+
+            return nameByEmail.get(0).getName();
+        }
+        return "로그인하세용";
+        }
+
+//    public String loginEmailReturn(String email) {
+////
+//
+//        }
     }
 
-}
+
+

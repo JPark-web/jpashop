@@ -1,6 +1,122 @@
 <!DOCTYPE html>
+
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/font-awesome.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/Pe-icon-7-stroke.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/animate.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/swiper-bundle.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/nice-select.css}">
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/magnific-popup.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{../assets/css/ion.rangeSlider.min.css}" />
+
+<!-- Style CSS -->
+<link rel="stylesheet" th:href="@{../assets/css/style.css}">
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="footer" th:fragment="footer">
-  <p>&copy; 공유 footer 영역</p>
-  <p>여기는 뭐 그런거 회사명 전화번호 </p>
+<div class="footer-area">
+  <div class="footer-top section-space-top-100 pb-60">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="footer-widget-item">
+            <div class="footer-widget-logo">
+              <a th:href="@{/}">
+                <img th:src="@{/images/logo.jpg}" alt="Logo" width="75px" height="75px">
+              </a>
+            </div>
+            <p class="footer-widget-desc">
+              © 2021 Yungbopark
+            </p>
+            <div class="social-link with-border">
+              <ul>
+                <li>
+                  <a href="#" data-tippy="Facebook" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy="Twitter" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy="Pinterest" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-pinterest"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" data-tippy="Dribbble" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                    <i class="fa fa-dribbble"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 pt-40">
+          <div class="footer-widget-item">
+            <h3 class="footer-widget-title">Useful Links</h3>
+            <ul class="footer-widget-list-item">
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 pt-40">
+          <div class="footer-widget-item">
+            <h3 class="footer-widget-title">My Account</h3>
+            <ul class="footer-widget-list-item">
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 pt-40">
+          <div class="footer-widget-item">
+            <h3 class="footer-widget-title">Our Service</h3>
+            <ul class="footer-widget-list-item">
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 pt-40">
+          <div class="footer-contact-info">
+            <h3 class="footer-widget-title">Got Question? Call Us</h3>
+            <a class="number" href="tel://123-456-789">+82 10 2753 1182</a>
+            <div class="address">
+              <ul>
+                <li>
+                  GoottAcademie
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="copyright">
+            <span class="copyright-text">© 2021 Yungbopark </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script th:src="@{../assets/js/vendor/bootstrap.bundle.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery-3.6.0.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery-migrate-3.3.2.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery.waypoints.js}"></script>
+<script th:src="@{../assets/js/vendor/modernizr-3.11.2.min.js}"></script>
+<script th:src="@{../assets/js/plugins/wow.min.js}"></script>
+<script th:src="@{../assets/js/plugins/swiper-bundle.min.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.nice-select.js}"></script>
+<script th:src="@{../assets/js/plugins/parallax.min.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../assets/js/plugins/tippy.min.js}"></script>
+<script th:src="@{../assets/js/plugins/ion.rangeSlider.min.js}"></script>
+<script th:src="@{../assets/js/plugins/mailchimp-ajax.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.counterup.js}"></script>
+
+<!--Main JS (Common Activation Codes)-->
+<script th:src="@{../assets/js/main.js}"></script>

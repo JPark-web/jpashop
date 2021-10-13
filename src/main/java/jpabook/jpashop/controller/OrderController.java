@@ -2,11 +2,10 @@ package jpabook.jpashop.controller;
 
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.OrderSearch;
 import jpabook.jpashop.service.ItemService;
-import jpabook.jpashop.service.LoginService;
-import jpabook.jpashop.service.MemberService;
 import jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,45 +21,33 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    private final MemberService memberService;
-    private final ItemService itemService;
-    private final LoginService loginService;
 
-    @GetMapping(value = "/order")
-    public String createForm(Model model) {
-        List<Member> members = memberService.findMember();
-        List<Item> items = itemService.findItems();
+    //오다 처리하는 메소드
+    @PostMapping("/done/{id}")
+    public String orderDoneTest(@PathVariable Long id, @ModelAttribute OrderItem orderItem,
+                                @SessionAttribute(name = "loginMember", required = false) Member loginedMember) {
 
-
-
-        model.addAttribute("members", members);
-        model.addAttribute("items", items);
-        return "order/orderForm";
+        if (loginedMember == null) {
+            return "redirect:/login";
+        }
+        log.info("oderDone");
+        orderService.order(loginedMember.getSeq_id(), id, orderItem.getCount());
+        return "/order/orderForm";
     }
 
 
-
-//    주문번호로 오더 페이지 호출
-    // 일단 인덱스 뉴 에서 상품 클릭하면 주문 페이지로 연결
-    // 주문 페이지에 상품 이미지 띄우기
-    // 주문 페이지에 상품 번호 가져오기
-    // 주문 페이지에 기타 다른 정보 가져오기
-
-
-    @PostMapping(value = "/order")
-    public String order(@RequestParam("memberId") Long memberId, @RequestParam("itemId") Long itemId,
-                        @RequestParam("count") int count) {
-
-        orderService.order(memberId, itemId, count);
-        return "redirect:/orde:wq!rs";
-    }
 
     @GetMapping(value = "/orders")
-    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model,
+                            @SessionAttribute(name = "loginMember", required = false) Member loginedMember) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "order/orderList";
     }
+//    @GetMapping({"/get", "/saveBid"})
+//    public void saveBid(@RequestParam("startPrice") int startPrice) {
+//        log.info("startPrice={}", startPrice);
+//    }
 
 
 
@@ -70,4 +57,5 @@ public class OrderController {
 
         return "redirect:/orders";
     }
+
 }

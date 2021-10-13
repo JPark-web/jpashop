@@ -11,27 +11,36 @@
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
-
     <header>
         <div class="banner-outer">
             <div class="banner">
                 <span class="close-banner"><i class="xi-close-thin"></i></span>
             </div>
         </div>
-<!--        <div class="lnb-outer">-->
-<!--            <div class="lnb">-->
-<!--                <div class="logo">-->
-<!--                    <a href="#none">-->
+        <div class="lnb-outer">
+            <div class="lnb">
+                <div class="logo">
+                    <a href="#none">
 
-<!--                        <img th:src="@{images/logo.png}" th:width="50px" th:href="70px"></a>-->
-<!--                </div>-->
-<!--                <div class="lnb-navi">-->
-<!--                    <a th:href="@{/login}">로그인</a>-->
-<!--                    <a href="/members/new">회원가입</a>-->
-<!--                    <a href="/seller/sellerMain">판매자 로그인</a>-->
-<!--                    </div>-->
-<!--            </div>-->
-<!--        </div>-->
+                        <img th:src="@{images/logo.jpg}" th:width="50px" th:href="70px"></a>
+                </div>
+                <div class="lnb-navi">
+
+                    <a th:href="@{/login}">로그인</a>
+                    <a href="/members/new">회원가입</a>
+                    <div class="col">
+                        <form th:action="@{/logout}" method="post">
+                            <button class="w-100 btn btn-dark btn-lg" type="submit">로그아웃
+                            </button>
+                        </form>
+                    </div>
+                </div>
+<!--                    <h4 class="mb-3" th:text="|로그인: ${loginedMember.name}|" th:if="${loginedMember != null}">로그인 사용자 이름</h4>-->
+<!--                    <h4 class="mb-3" th:text="|로그인: ${loginedMember.seq_id}|" th:if="${loginedMember != null}">로그인 사용자 이름</h4>-->
+
+                    <a href="/seller/sellerMain">판매자 로그인</a>
+                    </div>
+            </div>
         <div class="gnb-outer">
             <nav>
                 <ul class="gnb">
@@ -136,11 +145,11 @@
 
     <section>
         <h1>Body 이벤트 설명 영역 제목</h1>
-        <p>
-            Body 이벤트 설명 영역 본문 첫째줄 </br>
-            Body 이벤트 설명 영역 본문 둘째줄 </br>
-            Body 이벤트 설명 영역 본문 셋째줄 </br>
-        </p>
+        <p>Body 이벤트 설명 영역 본문 첫째줄</p> </br>
+        <p>Body 이벤트 설명 영역 본문 둘째줄</p> </br>
+        <p>Body 이벤트 설명 영역 본문 셋째줄</p> </br>
+
+
     </section>
     <div class="items-inner">
         <div class="items">
@@ -159,7 +168,47 @@
             </div>
         </div>
     </div>
+<!--여기서부터 호버메뉴시작-->
+<!--상품등록에서 판매노출이 체크 안된상품은 여기서 th:each가 돌아가 노출-->
+    <div class="hover_items" >
+        <div class="hover_item" th:each="item : ${items}" th:if="${item.open != true}">
 
+            <div class="caption">
+
+                <h2 th:text="${item.name}"></h2>
+                <p>
+                    abcdefghijkabcdefghijkabcdefghijk
+                </p>
+                <p th:text="${item.price}">Price</p>
+                <a th:href="|items/${item.id}|">view detail</a>
+
+            </div>
+            <img class="img-thumbnail" th:src="|images/${item.getImg1()}|">
+        </div>
+<!--        <div class="hover_item">-->
+<!--            <img src="images/main.png" alt="">-->
+<!--            <div class="caption">-->
+<!--                <h2>Rirakuma doll 25cm</h2>-->
+<!--                <p>-->
+<!--                    abcdefghijkabcdefghijkabcdefghijk-->
+<!--                </p>-->
+<!--                <p>Price : <s>$12</s> -> $10</p>-->
+<!--                <a href="">view detail</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="hover_item">-->
+<!--            <img src="images/main.png" alt="">-->
+<!--            <div class="caption">-->
+<!--                <h2>Rirakuma doll 25cm</h2>-->
+<!--                <p>-->
+<!--                    abcdefghijkabcdefghijkabcdefghijk-->
+<!--                </p>-->
+<!--                <p>Price : <s>$12</s> -> $10</p>-->
+<!--                <a href="">view detail</a>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+<!--여기서부터 호버메뉴종료-->
 </div>
 
 <script>

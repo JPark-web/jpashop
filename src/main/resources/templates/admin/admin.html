@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pronia - Home Two</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Pronia plant store bootstrap 5 template is an awesome website template for any home plant shop.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" th:href="@{../assets/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{../assets/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{../assets/css/Pe-icon-7-stroke.css}" />
+    <link rel="stylesheet" th:href="@{../assets/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/css/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{../assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{../assets/css/magnific-popup.min.css}" />
+    <link rel="stylesheet" th:href="@{../assets/css/ion.rangeSlider.min.css}" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{../assets/css/style.css}">
+
+</head>
+
+<body>
+    <div class="preloader-activate preloader-active open_tm_preloader">
+        <div class="preloader-area-wrap">
+            <div class="spinner d-flex justify-content-center align-items-center h-100">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wrapper">
+
+        <!-- Begin Main Header Area -->
+        <header class="main-header-area">
+            <div class="header-top bg-pronia-primary d-none d-lg-block">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <div class="header-top-left">
+                                <span class="pronia-offer">banner 1 section</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="header-top-right">
+                                <ul class="dropdown-wrap">
+                                    <li class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="currencyButton" data-bs-toggle="dropdown" aria-label="currency" aria-expanded="false">
+                                            KRW
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="currencyButton">
+                                            <li><a class="dropdown-item" href="#">EUR</a></li>
+                                            <li><a class="dropdown-item" href="#">US</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle ht-btn" type="button" id="languageButton" data-bs-toggle="dropdown" aria-label="language" aria-expanded="false">
+                                            한국어
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="languageButton">
+                                            <li><a class="dropdown-item" href="#">English</a></li>
+                                            <li><a class="dropdown-item" href="#">Deutsch</a></li>
+                                            <li><a class="dropdown-item" href="#">日本語</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-middle py-30">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <div class="header-middle-wrap position-relative">
+                                <a th:href="@{/}" class="header-logo">
+                                    <img th:src="@{images/logo.jpg}" alt="Header Logo" width="75px" height="75px">
+                                </a>
+
+                                <div class="header-right">
+                                    <ul>
+                                        <li class="dropdown d-none d-lg-block">
+                                            <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button" id="settingButton" data-bs-toggle="dropdown" aria-label="setting" aria-expanded="false">
+                                                <i class="pe-7s-users"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="settingButton">
+                                                <li><a class="dropdown-item" href="my-account.html">My account</a></li>
+                                                <li><a class="dropdown-item" th:href="@{members/new}">Register</a></li>
+                                                <li><a class="dropdown-item" th:if="${loginedMember}==null" th:href="@{login}">Login</a></li>
+                                                <li><a class="dropdown-item" th:unless="${loginedMember}==null" th:text="|welcome ${loginedMember.name}|"></a></li>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{admin}">
+                                                <i class="pe-7s-config"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom d-none d-lg-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="main-menu position-relative">
+                                <nav class="main-nav">
+                                    <ul>
+                                        <li>
+                                            <a href="/members">회원 목록</a>
+                                        </li>
+                                        <li>
+                                            <a href="/items/new">상품 등록</a>
+                                        </li>
+                                        <li>
+                                            <a href="/items">상품 목록</a>
+                                        </li>
+                                        <li>
+                                            <a href="/orders">주문 내역</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <body>
+    <script th:src="@{../assets/js/vendor/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{../assets/js/vendor/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{../assets/js/vendor/jquery-migrate-3.3.2.min.js}"></script>
+    <script th:src="@{../assets/js/vendor/jquery.waypoints.js}"></script>
+    <script th:src="@{../assets/js/vendor/modernizr-3.11.2.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/wow.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/swiper-bundle.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/jquery.nice-select.js}"></script>
+    <script th:src="@{../assets/js/plugins/parallax.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/tippy.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/ion.rangeSlider.min.js}"></script>
+    <script th:src="@{../assets/js/plugins/mailchimp-ajax.js}"></script>
+    <script th:src="@{../assets/js/plugins/jquery.counterup.js}"></script>
+
+    <!--Main JS (Common Activation Codes)-->
+    <script th:src="@{../assets/js/main.js}"></script>
+
+</body>
+
+</html>

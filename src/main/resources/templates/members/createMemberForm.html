@@ -1,61 +1,58 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
-<style>
-  .fieldError {
-    border-color: #bd2130;
-  }
-</style>
-<body>
-<div class="container">
-  <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-  <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+<link rel="stylesheet" th:href="@{../assets/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{../assets/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{../assets/css/Pe-icon-7-stroke.css}" />
+<link rel="stylesheet" th:href="@{../assets/css/animate.min.css}">
+<link rel="stylesheet" th:href="@{../assets/css/swiper-bundle.min.css}">
+<link rel="stylesheet" th:href="@{../assets/css/nice-select.css}">
+<link rel="stylesheet" th:href="@{../assets/css/magnific-popup.min.css}" />
+<link rel="stylesheet" th:href="@{../assets/css/ion.rangeSlider.min.css}" />
 
-    <div class="form-group">
-      <label th:for="name">아이디(이메일)</label>
-      <input type="text" th:field="*{email}" class="form-control" placeholder="아이디(이메일)을 입력하세요"
+<!-- Style CSS -->
+<link rel="stylesheet" th:href="@{../assets/css/style.css}">
+<body>
+<!--<div class="col-lg-6 pt-5 pt-lg-0">-->
+<div class="col-lg-6">
+  <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+    <div class="login-form">
+    <h4 class="login-title">Register Page</h4>
+    <div class="row">
+      <div class="col-lg-12">
+<!--      <label th:for="name">아이디(이메일)</label>-->
+      <input type="text" th:field="*{email}" class="form-control" placeholder="email"
              th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
       <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect date</p>
     </div>
-    <div class="form-group">
-      <label th:for="pass">비밀번호</label>
-      <input type="text" th:field="*{pass}" class="form-control"
-      placeholder="비밀번호">
+    <div class="col-lg-12">
+<!--      <label th:for="pass">비밀번호</label>-->
+      <input type="password" th:field="*{pass}" class="form-control"
+      placeholder="password">
     </div>
-    <div class="form-group">
-      <label th:for="pass">비밀번호 확인</label>
-      <input type="text" th:field="*{passCheck}" class="form-control"
-             placeholder="비밀번호 확인">
+    <div class="col-lg-12">
+<!--      <label th:for="pass">비밀번호 확인</label>-->
+      <input type="password" th:field="*{passCheck}" class="form-control"
+             placeholder="confirm password">
     </div>
-    <div class="form-group">
-      <label th:for="pass">이름</label>
+    <div class="col-lg-12">
+<!--      <label th:for="pass">이름</label>-->
       <input type="text" th:field="*{name}" class="form-control"
-             placeholder="이름">
+             placeholder="firstname/lastname">
     </div>
-    <div class="form-group">
-      <label th:for="pass">휴대폰번호</label>
+    <div class="col-lg-12">
+<!--      <label th:for="pass">휴대폰번호</label>-->
       <input type="text" th:field="*{phone}" class="form-control"
-             placeholder="휴대폰번호">
+             placeholder="mobile">
     </div>
-<!--    <div class="form-group">-->
-<!--      <label th:for="city">도시</label>-->
-<!--      <input type="text" th:field="*{city}" class="form-control"-->
-<!--             placeholder="도시를 입력하세요">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--      <label th:for="street">거리</label>-->
-<!--      <input type="text" th:field="*{street}" class="form-control"-->
-<!--             placeholder="거리를 입력하세요">-->
-<!--    </div>-->
-    <div class="form-group">
-      <input type="text" th:field="*{postcode}" class="form-control" placeholder="우편번호">
+   <div class="col-lg-12">
+      <input type="text" th:field="*{postcode}" class="form-control" placeholder="postcode">
 <!--      <input type="text" id="postcode" class="form-control" placeholder="우편번호">-->
-      <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-      <input type="text" th:field="*{address}" class="form-control" placeholder="주소"><br>
+      <input type="button" onclick="sample6_execDaumPostcode()" value="postcode"><br>
+      <input type="text" th:field="*{address}" class="form-control" placeholder="address"><br>
 <!--      <input type="text" id="sample6_address" class="form-control" placeholder="주소"><br> (순서1)-->
-      <input type="text" th:field="*{detailAddress}" class="form-control" placeholder="상세주소">
+      <input type="text" th:field="*{detailAddress}" class="form-control" placeholder="detail address">
 <!--      <input type="text" id="sample6_detailAddress" class="form-control" placeholder="상세주소"> (순서3)-->
-      <input type="text" th:field="*{extraAddress}" class="form-control" placeholder="참고항목">
+      <input type="text" th:field="*{extraAddress}" class="form-control" placeholder="extra address">
 <!--      <input type="text" id="extraAddress" class="form-control" placeholder="참고항목"> (순서2)-->
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script>
@@ -108,11 +105,119 @@
         }
       </script>
     </div>
+    </div>
+    <button type="submit" class="col-lg-12 btn btn-pronia-primary">Submit</button>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
   </form>
   <br/>
-  <div th:replace="fragments/footer :: footer" />
+  <div class="footer-area">
+    <div class="footer-top section-space-top-100 pb-60">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="footer-widget-item">
+              <div class="footer-widget-logo">
+                <a href="index.html">
+                  <img th:src="@{/images/logo.jpg}" alt="Logo" width="75px" height="75px">
+                </a>
+              </div>
+              <p class="footer-widget-desc">
+                © 2021 Yungbopark
+              </p>
+              <div class="social-link with-border">
+                <ul>
+                  <li>
+                    <a href="#" data-tippy="Facebook" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-tippy="Twitter" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-tippy="Pinterest" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-pinterest"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-tippy="Dribbble" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                      <i class="fa fa-dribbble"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 pt-40">
+            <div class="footer-widget-item">
+              <h3 class="footer-widget-title">Useful Links</h3>
+              <ul class="footer-widget-list-item">
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 pt-40">
+            <div class="footer-widget-item">
+              <h3 class="footer-widget-title">My Account</h3>
+              <ul class="footer-widget-list-item">
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 pt-40">
+            <div class="footer-widget-item">
+              <h3 class="footer-widget-title">Our Service</h3>
+              <ul class="footer-widget-list-item">
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 pt-40">
+            <div class="footer-contact-info">
+              <h3 class="footer-widget-title">Got Question? Call Us</h3>
+              <a class="number" href="tel://123-456-789">+82 10 2753 1182</a>
+              <div class="address">
+                <ul>
+                  <li>
+                    GoottAcademie
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="copyright">
+              <span class="copyright-text">© 2021 Yungbopark </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> <!-- /container -->
+<script th:src="@{../assets/js/vendor/bootstrap.bundle.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery-3.6.0.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery-migrate-3.3.2.min.js}"></script>
+<script th:src="@{../assets/js/vendor/jquery.waypoints.js}"></script>
+<script th:src="@{../assets/js/vendor/modernizr-3.11.2.min.js}"></script>
+<script th:src="@{../assets/js/plugins/wow.min.js}"></script>
+<script th:src="@{../assets/js/plugins/swiper-bundle.min.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.nice-select.js}"></script>
+<script th:src="@{../assets/js/plugins/parallax.min.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{../assets/js/plugins/tippy.min.js}"></script>
+<script th:src="@{../assets/js/plugins/ion.rangeSlider.min.js}"></script>
+<script th:src="@{../assets/js/plugins/mailchimp-ajax.js}"></script>
+<script th:src="@{../assets/js/plugins/jquery.counterup.js}"></script>
+
+<!--Main JS (Common Activation Codes)-->
+<script th:src="@{../assets/js/main.js}"></script>
 </body>
 </html>

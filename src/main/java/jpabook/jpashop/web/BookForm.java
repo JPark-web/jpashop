@@ -19,9 +19,14 @@ public class BookForm {
     private Boolean open;
     private String spec;
     private List<MultipartFile> imageFiles;
-    private MultipartFile attachFile;
+//    private MultipartFile attachFile;
 
-
+//      auction function test start       //
+    private int startPrice;
+    private int endPrice;
+    private int bidMinValue;
+    private Boolean auction;
+//      auction function test end       //
 
     private String img1;
     private String img2;

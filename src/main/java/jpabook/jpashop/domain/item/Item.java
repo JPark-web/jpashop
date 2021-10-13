@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
+
 @Getter @Setter
 public abstract class Item {
 
@@ -23,7 +24,7 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    private Boolean open; // 판매 여부
+    private Boolean open; // 최상단 섹션에 상품 등록 여부 체크
     @Transient
     private List<String> regions; // 등록 지역
     private ItemType itemType;
@@ -33,6 +34,14 @@ public abstract class Item {
     private String img1;
     private String img2;
     private String img3;
+
+
+
+    private Boolean auction;
+    private int startPrice;
+    private int endPrice;
+    private int bidMinValue;
+
 
     @Transient
     @Setter

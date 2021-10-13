@@ -1,54 +1,73 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/../assets/images/favicon.ico}" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/font-awesome.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/Pe-icon-7-stroke.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/animate.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/swiper-bundle.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/nice-select.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/magnific-popup.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/../assets/css/ion.rangeSlider.min.css}" />
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/../assets/css/style.css}">
+</head>
 <body>
+
 <div class="container">
-  <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-  <div id="multiple-container"></div>
+    <div class="row">
+        <div class="col-lg-9">
+            <form th:object="${form}" method="post">
 
-  <form th:object="${form}" method="post">
-    <img th:src="|/images/${item.getImg1()}|" width="200px" height="200px">
-    <img th:src="|/images/${item.getImg2()}|" width="200px" height="200px">
-    <img th:src="|/images/${item.getImg3()}|" width="200px" height="200px">
-    <!-- id -->
-    <input type="hidden" th:field="*{id}" />
-    <div class="form-group">
-      <label th:for="name">상품명</label>
-      <input type="text" th:field="*{name}" class="form-control"
-             placeholder="이름을 입력하세요" />
-    </div>
-    <div class="form-group">
-      <label th:for="price">가격</label>
-      <input type="number" th:field="*{price}" class="form-control"
-             placeholder="가격을 입력하세요" />
-    </div>
-    <div class="form-group">
-      <label th:for="stockQuantity">수량</label>
-      <input type="number" th:field="*{stockQuantity}" class="form-control"
-             placeholder="수량을 입력하세요" />
-    </div>
-    <div class="form-group">
-      <label th:for="spec">상세설명</label>
-      <input type="text" th:field="*{spec}" class="form-control"
-             placeholder="상세설명을 입력하세요" />
-    </div>
-    <div class="form-group">
-      <label th:for="isbn">ISBN</label>
-      <input type="text" th:field="*{isbn}" class="form-control"
-             placeholder="ISBN을 입력하세요" />
-    </div>
-    <div>판매여부</div>
-    <div>
-      <div class="form-group">
-        <label for="open" class="form-check-label">판매 오픈</label>
-        <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" th:field="*{id}" />
+                <div class="login-form">
+                    <div class="img-thumbnail" >
+                        <img th:src="|/images/${item.getImg1()}|" width="200px" height="200px">
+                        <img th:src="|/images/${item.getImg2()}|" width="200px" height="200px">
+                        <img th:src="|/images/${item.getImg3()}|" width="200px" height="200px">
+                    </div>
+                    <h4 class="login-title">Itemupdateform</h4>
+                    <!--                                    login start-->
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <label>상품명</label>
+                            <input type="text" th:field="*{name}" class="form-control">
+                        </div>
+                        <div class="col-lg-3">
+                            <label>가격</label>
+                            <input type="number" th:field="*{price}" class="form-control">
+                            </div>
+                        <div class="col-lg-1">
+                            <label>수량</label>
+                            <input type="number" th:field="*{stockQuantity}" class="form-control">
+                            </div>
+                        <div class="col-lg-9">
+                            <label>상세설명</label>
+                            <input type="text" th:field="*{spec}" class="form-control">
+                            </div>
+                        <div class="col-md8-5">
+                            <!--      단일체크박스 시작      -->
+                            <div class="form-check">
+                                <label th:for="open" class="form-check-label">판매오픈</label>
+                                <input type="checkbox" th:field="*{open}" class="form-check-input"></div>
+                        </div>
 
 
-  </form>
-</div> <!-- /container -->
+                        <div class="col-lg-12 pt-5">
+                            <button class="btn btn-custom-size lg-size btn-pronia-primary" type="submit">Submit</button>
+                        </div>
+
+                    </div>
+
+                    <!--                                    login end-->
+                </div>
+            </form>
+        </div> <!-- /container -->
+    </div>
+</div>
 </body>
 </html>

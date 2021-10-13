@@ -1,0 +1,17 @@
+<div class="items-inner">
+    <div class="items">
+        <div class="item" th:each="item : ${items}">
+            <div class="photo">
+                <a th:href="|items/${item.id}|">
+                    <img th:src="|images/${item.getImg1()}|">
+                    <img th:src="|images/${item.getImg2()}|">
+                </a>
+            </div>
+            <div class="detail">
+                <span class="price" th:text="${item.price}"></span>
+                <span class="name" th:text="${item.name}"></span>
+                <span class="like"></span>
+            </div>
+        </div>
+    </div>
+</div>
