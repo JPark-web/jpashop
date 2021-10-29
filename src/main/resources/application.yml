@@ -14,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernamte:
         format_sql: true
@@ -27,7 +27,7 @@ logging.level:
 
 custom:
   path:
-    upload-images: 'C:/dev/uploadSaveTest/'
+    upload-images: C:\dev\uploadSaveTest
 #    여기에 업로드 한 이미지들 저장되고, 불러옴.
 
 

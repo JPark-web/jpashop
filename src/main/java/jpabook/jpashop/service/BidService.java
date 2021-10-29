@@ -11,7 +11,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -20,54 +24,62 @@ import java.util.List;
 @Slf4j
 public class BidService {
 
-    private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
     private final BidRepository bidRepository;
 
 
-
-    @Transactional
-    public Long saveBid(Long memberId, Long itemId) {
-
-        Member member = memberRepository.findOne(memberId);
-
-        Item item = itemRepository.findOne(itemId);
-
-        BidItem bidItem = BidItem.createBidItem(item);
-
-        Bid bid = Bid.createBid(member, bidItem);
-
-//        bidRepository.save(bid);
-
-        return bid.getId();
-    }
-
-//    @Transactional
-//    public Long addBidBudget(Long memberId, Long itemId, int bidPrice) {
-//
-//        Member member = memberRepository.findOne(memberId);
-//        BidItem bidItem = findOne(itemId);
-//        bidItem.setCurrentPrice(++bidPrice);
-//        Bid bid = Bid.createBid(member, bidItem);
-//        bidRepository.save(bid);
-//        return bid.getId();
-//    }
-
-    public List<BidItem> findBids() {
-        return bidRepository.findAll();
+    public List<BidItem> findBids(Long id) {
+        return bidRepository.findAll(id);
     }
 
     public BidItem findOne(Long memberId) {
         return bidRepository.findOne(memberId);
     }
+
+    public List<BidItem> findAll(Long id) {
+        return bidRepository.findAll(id);
+    }
+
     @Transactional
-    public void addBidBudget(Long memberId, Long itemId ,int bidPrice) {
-        Member member = memberRepository.findOne(memberId);
-        BidItem bidItem = bidRepository.findOne(itemId);
-        bidItem.setBidPrice(bidPrice);
-        bidItem.setCurrentPrice(++bidPrice);
-        Bid bid = Bid.createBid(member, bidItem);
-        bidRepository.save(bid);
+    public BidItem addBidBudget(BidItem bidItem, Long itemId , int bidPrice, long memberId) {
+
+        Item item = itemRepository.findOne(itemId);
+
+        bidItem.setItem(item);
+        bidItem.setMemberId(memberId);
+        bidItem.setBidDate(LocalDateTime.now());
+        bidRepository.save(bidItem);
+
+        return bidItem;
+    }
+
+    public BidItem betweenDays(Item item, BidItem bidItem) {
+
+        String bidEndTime = item.getBidEndTime();
+        int year = Integer.parseInt(bidEndTime.substring(0, 4));
+        int month = Integer.parseInt(bidEndTime.substring(5,7));
+        int day = Integer.parseInt(bidEndTime.substring(8,10));
+        int hour = Integer.parseInt(bidEndTime.substring(11,13));
+        int minute = Integer.parseInt(bidEndTime.substring(14,16));
+
+        LocalDateTime dateNow = LocalDateTime.now();
+        LocalDateTime dateTarget = LocalDateTime.of(year, month, day, hour, minute, 0);
+
+        long betweenMinutes = ChronoUnit.MINUTES.between(dateNow, dateTarget);
+
+        Duration duration = Duration.ofMinutes(betweenMinutes);
+
+        long days = duration.toDaysPart();
+        bidItem.setRemainDays(days);
+
+        long hours = duration.toHoursPart();
+        bidItem.setRemainHours(hours);
+
+        long minutes = duration.toMinutesPart();
+        bidItem.setRemainMinutes(minutes);
+
+        return bidItem;
+
     }
 
 }

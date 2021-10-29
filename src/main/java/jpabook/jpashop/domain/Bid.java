@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "bids")
 @Getter
 @Setter
-//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Bid {
 
     @Id
@@ -41,12 +41,10 @@ public class Bid {
         bidItem.setBid(this);
         }
 
-    public static Bid createBid(Member member, BidItem... bidItems) {
+    public static Bid createBid(Member member, BidItem bidItem) {
         Bid bid = new Bid();
         bid.setMember(member);
-        for (BidItem bidItem : bidItems) {
-            bid.addBidItem(bidItem);
-        }
+
         bid.setBidDate(LocalDateTime.now());
         return bid;
     }

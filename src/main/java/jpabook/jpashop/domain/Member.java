@@ -18,7 +18,7 @@ public class Member {
     private Long seq_id;
     private String email;
     private String pass;
-    //private String city;
+
     private String name;
     private String phone;
 

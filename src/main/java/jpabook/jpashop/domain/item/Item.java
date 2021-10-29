@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +14,13 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 
-@Getter @Setter
+@Getter
+@Setter
 public abstract class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "item_id")
+//    @Column(name = "item_id")
     private Long id;
     private String name;
     private int price;
@@ -35,12 +37,17 @@ public abstract class Item {
     private String img2;
     private String img3;
 
-
-
-    private Boolean auction;
+    private Boolean bidCheck;
     private int startPrice;
     private int endPrice;
     private int bidMinValue;
+
+
+    private int currentPrice;
+
+    private String bidEndTime;
+
+
 
 
     @Transient

@@ -1,4 +1,5 @@
 package jpabook.jpashop.controller;
+import javassist.Loader;
 import jpabook.jpashop.domain.*;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.FileStore;
@@ -9,6 +10,7 @@ import jpabook.jpashop.web.BidForm;
 import jpabook.jpashop.web.BookForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.Local;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import javax.xml.crypto.dsig.SignatureMethod;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,16 +58,25 @@ public class ItemController {
         book.setOpen(form.getOpen());
         book.setSpec(form.getSpec());
 
-        book.setStartPrice(form.getStartPrice());
-        book.setEndPrice(form.getEndPrice());
-        book.setBidMinValue(form.getBidMinValue());
-        book.setAuction(form.getAuction());
+        if (form.getBidCheck()) {
+            log.info("getBidCheck()={}", form.getBidCheck());
+            book.setCurrentPrice(form.getStartPrice());
+            book.setStartPrice(form.getStartPrice());
+            book.setEndPrice(form.getEndPrice());
+            book.setBidMinValue(form.getBidMinValue());
+            book.setBidCheck(form.getBidCheck());
+            book.setBidEndTime(form.getBidEndTime());
+
+        }
+
 
         List<UploadFile> storeImageFiles =
                 fileStore.storeFiles(form.getImageFiles());
         setImageCreate(book, storeImageFiles);
         redirectAttributes.addAttribute("itemId", book.getId());
         itemService.saveItem(book);
+        log.info("book.getId()={}", book.getId());
+
         return "redirect:/items";
     }
 
@@ -104,26 +124,43 @@ public class ItemController {
 
     //이미지 테스트 한거 출력 위해
     @GetMapping("/items/{id}")
-    public String single_item(@Valid @PathVariable Long id, Model model,
+    public String single_item(@PathVariable Long id, Model model,
                               @ModelAttribute OrderItem orderItem,
                               @SessionAttribute(name = "loginMember", required = false) Member loginMember,
-                              @ModelAttribute BidItem bidItem) {
+                              @ModelAttribute BidItem bidItem) throws ParseException {
 
         Item item = itemService.findOne(id);
         model.addAttribute("item", item);
         model.addAttribute("orderItem", orderItem);
         model.addAttribute("loginmember", loginMember);
-        model.addAttribute("bidItem", bidItem);
-        BidItem bidItemTest = bidService.findOne(id);
-        model.addAttribute("bidItemTest", bidItemTest);
 
-//        if (item.getAuction() == true) {
-//            bidService.saveBid(loginMember.getSeq_id(), id);
-//        }
+        log.info("item.getBidCheck()={}", item.getBidCheck());
+
+            // 아이템 폼 html에서 폼 엑션값을 done/itemNo 주니까 바로 거기로 이동.
+        if (item.getBidCheck()) {
+            String bidEndTime = item.getBidEndTime();
+            int year = Integer.parseInt(bidEndTime.substring(0, 4));
+            int month = Integer.parseInt(bidEndTime.substring(5, 7));
+            int day = Integer.parseInt(bidEndTime.substring(8, 10));
+            int hour = Integer.parseInt(bidEndTime.substring(11, 13));
+            int minute = Integer.parseInt(bidEndTime.substring(14, 16));
+
+            LocalDateTime dateNow = LocalDateTime.now();
+            LocalDateTime dateTarget = LocalDateTime.of(year, month, day, hour, minute, 0);
+
+            long betweenSeconds = ChronoUnit.SECONDS.between(dateNow, dateTarget);
+
+            if (betweenSeconds == 0 || betweenSeconds <= 0) {
+                log.info("betweenSeconds={}", betweenSeconds);
+                return "/bids/noRemainTime";
+            }
+            bidService.betweenDays(item, bidItem);
+            return "/test/auctionTest";
+
+        }
         return "/items/single-product";
-        // 아이템 폼 html에서 폼 엑션값을 done/itemNo 주니까 바로 거기로 이동.
-    }
 
+    }
 
     @ResponseBody
     @GetMapping("/images/{filename}")

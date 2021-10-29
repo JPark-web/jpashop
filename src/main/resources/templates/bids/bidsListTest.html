@@ -4,23 +4,22 @@
 <body>
 <div class="container">
     <div>
+        <span th:text="|${bids.get(0).item.id}, '상품의 입찰 내역 입니다.'|"></span>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>입찰번호</th>
-                <th>상품번호</th>
-                <th>상품명</th>
-                <th>경매시작가격</th>
-                <th>경매현재가격</th>
+                <th>입찰일시</th>
+                <th>입찰가격</th>
+                <th>입찰자</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="member : ${bids}">
-                <td th:text="${member.bid.id}"></td>
-                <td th:text="${member.id}"></td>
-                <td th:text="${member.item.name}"></td>
-                <td th:text="${member.item.startPrice}"></td>
-                <td th:text="${member.currentPrice}"></td>
+            <tr th:each="bid : ${bids}">
+                <td th:text="${bid.bidNo}"></td>
+                <td th:text="${bid.bidDate}"></td>
+                <td th:text="${bid.bidPrice}"></td>
+                <td th:text="${bid.memberId}"></td>
 
 
             </tr>

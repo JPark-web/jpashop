@@ -90,7 +90,7 @@
                                             <ul class="dropdown-menu" aria-labelledby="settingButton">
                                                 <li><a class="dropdown-item" href="my-account.html">My account</a></li>
                                                 <li><a class="dropdown-item" th:href="@{members/new}">Register</a></li>
-                                                <li><a class="dropdown-item" th:if="${loginedMember}==null" th:href="@{login}">Login</a></li>
+                                                <li><a class="dropdown-item" th:if="${loginedMember}==null" th:href="@{/login}">Login</a></li>
                                                 <li><a class="dropdown-item" th:unless="${loginedMember}==null" th:text="|welcome ${loginedMember.name}|"></a></li>
                                                 </li>
                                             </ul>
@@ -215,7 +215,9 @@
                                 </div>
                                 <p class="short-desc" th:text="${item.spec}"></p>
 <!--                                메인바디 내용여기서부터 시작-->
-                                <form th:action="|/done/${item.id}|" method="post">
+
+<!--                                즉시 구매 form 시작-->
+                                <form th:action="|/cart/${item.id}|" method="post">
 
                                 <ul class="quantity-with-btn">
                                     <li class="quantity">
@@ -228,37 +230,49 @@
                                     </li>
                                 </ul>
                                 </form>
+                                <!--                                즉시 구매 form 끝-->
+                                <!--                                경매 form 시작-->
+                                    <form th:action="|/items/${item.id}|" th:if="${item.bidCheck == true}" method="post">
+                                    <ul>
+                                    <li class="add-to-cart">
+                                        (bid) 경매 시작금액 (test)
+                                        <span class="auc-price-start" th:text="${item.startPrice}">aucPriceStart</span>
+                                    </li>
+                                    <li class="add-to-cart">
+                                            (bid) 현재 금액 (test)
+                                            <span class="auc-price-start" th:text="*{item.currentPrice}">aucPriceStart</span>
+                                    </li>
+                                        <li>
+                                        (auction) 종료금액 (test)
+                                        <span class="auc-price-end" th:text="${item.endPrice}">aucPriceEnd</span>
+                                    </li>
+                                        <li>
+                                        (auction) 남은 일 수 (test)
+                                        <span class="auc-price-end" th:text="${bidItem.remainDays}">aucPriceEnd</span>
+                                    </li>
+                                        <li>
+                                        (auction) 남은 시간 (test)
+                                        <span class="auc-price-end" th:text="${bidItem.remainHours}">aucPriceEnd</span>
+                                    </li>
 
-<!--                                    <form th:action="|/bid/${item.id}|" method="post">-->
-<!--&lt;!&ndash;                                   경매 시스템 테스트 시작&ndash;&gt;-->
-<!--                            &lt;!&ndash;              여기 나중에 th:else로 바꾼다!!!!!!!!!!!                          &ndash;&gt;-->
-<!--                                    <ul>-->
-<!--                                    <li class="add-to-cart">-->
-<!--                                        (bid) 경매 시작금액 (test)-->
-<!--                                        <span class="auc-price-start" th:text="${item.startPrice}">aucPriceStart</span>-->
-<!--                                    </li>-->
-<!--                                    <li class="add-to-cart">-->
-<!--                                            (bid) 현재 금액 (test)-->
+                                        <li>
+                                        (auction) 남은 분 (test)
+                                        <span class="auc-price-end" th:text="${bidItem.remainMinutes}">aucPriceEnd</span>
+                                    </li>
 
-<!--                                            <span class="auc-price-start" th:text="*{bidItemTest?.currentPrice}">aucPriceStart</span>-->
-<!--                                    </li>-->
-<!--                                    <li>-->
+                                        <li>
+                                            (auction) 비딩? (test)
+                                            <input type="text" id="bidPrice" th:field="*{bidItem.bidPrice}" class="form-control" placeholder="bidBudget">
+                                            <div th:if="${errors?.containsKey('bidMinValue')}">
+                                                <p class="field-error" th:text="${errors['bidMinValue']}">입력 오류 메시지</p>
+                                            </div>
 
-<!--                                    </li>-->
-<!--                                    <li>-->
-<!--                                        (auction) 종료금액 (test)-->
-<!--                                        <span class="auc-price-end" th:text="${item.endPrice}">aucPriceEnd</span>-->
-<!--                                    </li>-->
-<!--                                        <li>-->
+                                            <input type= submit value="bid">
+                                        </li>
+                                  </ul>
 
-<!--                                            <span class="auc-price-end" th:text="${item.endPrice}">aucPriceEnd</span>-->
-<!--                                        </li>-->
-<!--                                  </ul>-->
-<!--                                        (auction) 비딩? (test)-->
-<!--                                        <input type="text" id="bidPrice" th:field="*{bidItem.bidPrice}" class="form-control" placeholder="bidBudget">-->
-<!--                                        <input type= submit value="bid">-->
-<!--                                </form>-->
-<!--                무료배송 / 안전결제 / 안전결제                -->
+                                </form>
+                                <!--                                경매 form 끝-->
                                 <div class="product-category">
                                     <span class="title">Model No.:</span>
                                     <ul>

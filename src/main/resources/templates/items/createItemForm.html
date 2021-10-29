@@ -48,6 +48,14 @@
                             <label>최소 비딩 금액</label>
                             <input type="number" th:field="*{bidMinValue}" class="form-control">
                         </div>
+<!--                        경매 종료 시각 테스트 시작-->
+                        <div class="col-lg-3">
+                            <label>경매 종료 시각Test(datetime-local)</label>
+                            <input type="datetime-local" th:field="*{bidEndTime}">
+                        </div>
+
+                        <!--                        경매 종료 시각 테스트 종료-->
+
                         <div class="col-lg-3">
                             <label>수량</label>
                             <input type="number" th:field="*{stockQuantity}" class="form-control">
@@ -64,7 +72,7 @@
                         <div class="col-md8-5">
                             <div class="form-check">
                                 <label th:for="auction" class="form-check-label">경매등록</label>
-                                <input type="checkbox" th:field="*{auction}" class="form-check-input"></div>
+                                <input type="checkbox" th:field="*{bidCheck}" class="form-check-input"></div>
                         </div>
                         <ul CLASS="col-lg-9">
                             <li>이미지 파일들<input type="file" multiple="multiple"

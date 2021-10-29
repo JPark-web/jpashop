@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter @Setter
@@ -25,11 +26,15 @@ public class BookForm {
     private int startPrice;
     private int endPrice;
     private int bidMinValue;
-    private Boolean auction;
+    private Boolean bidCheck;
 //      auction function test end       //
 
     private String img1;
     private String img2;
     private String img3;
 
+
+    private int currentPrice;
+
+    private String bidEndTime;
 }

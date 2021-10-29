@@ -12,7 +12,7 @@ public class AdminController {
 
     private final MemberService memberService;
 
-    @GetMapping(value = "admin")
+    @GetMapping(value = "/admin")
     public String sellerMain() {
         return "/admin/admin";
     }
